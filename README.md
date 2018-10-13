@@ -15,7 +15,15 @@ GoCv installation instructions is well documented in their website:
 [Windows](https://gocv.io/getting-started/windows/)
 
 
-After you installed the GoCv, you need to get the Go wrapper for zbar as shown below:
+After you installed the GoCv, you need to install zbar and get the Go wrapper for zbar as shown below:
+
+Installing zbar can be tricky you migth want to check out below:
+
+[Linux](http://zbar.sourceforge.net/download.html)
+
+[MacOs](http://macappstore.org/zbar/)
+
+[Windows](http://zbar.sourceforge.net/download.html)
 
 ```bash
 go get github.com/bieber/barcode
