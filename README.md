@@ -34,6 +34,9 @@ Then you can clone this repo and run it
 git clone https://github.com/unicod3/realtime-barcode-detector.git rbd
 cd rbd
 go run main.go
+
+# or to specify the device id:
+go run main.go --device-id 1234
 ```
 
 Then you can show your code128 barcodes to your cam.
@@ -43,4 +46,3 @@ Then you can show your code128 barcodes to your cam.
 ### Note:
 It will open your default webcam since the device id set to zero.
 
-You need the configure device id if you have different setup.
