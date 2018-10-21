@@ -1,6 +1,7 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"image"
 	"image/color"
@@ -10,7 +11,10 @@ import (
 )
 
 func main() {
-	deviceID := 0
+	var deviceID int
+	flag.IntVar(&deviceID, "device-id", 0, "integer value, webcam device ID")
+	flag.Parse()
+
 	webcam, err := gocv.VideoCaptureDevice(deviceID)
 	if err != nil {
 		fmt.Println(err)
@@ -24,8 +28,8 @@ func main() {
 	img := gocv.NewMat()
 	defer img.Close()
 
-	text_color := color.RGBA{255, 0, 0, 0} // red
-	dot_color := color.RGBA{0, 255, 0, 0}  // green
+	textColor := color.RGBA{255, 0, 0, 0} // red
+	dotColor := color.RGBA{0, 255, 0, 0}  // green
 	fmt.Printf("start reading camera device: %v\n", deviceID)
 	for {
 		if ok := webcam.Read(&img); !ok {
@@ -55,13 +59,13 @@ func main() {
 
 			size := gocv.GetTextSize(data, gocv.FontHersheyPlain, 1.2, 2)
 			pt := image.Pt(x0-size.X, y0-size.Y)
-			gocv.PutText(&img, data, pt, gocv.FontHersheyPlain, 1.2, text_color, 2)
+			gocv.PutText(&img, data, pt, gocv.FontHersheyPlain, 1.2, textColor, 2)
 
 			for _, p := range points {
 				x0 := p.X
 				y0 := p.Y
 				pt := image.Pt(x0, y0)
-				gocv.PutText(&img, ".", pt, gocv.FontHersheyPlain, 1.2, dot_color, 2)
+				gocv.PutText(&img, ".", pt, gocv.FontHersheyPlain, 1.2, dotColor, 2)
 			}
 		}
 
